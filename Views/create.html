@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir Palabra e Imágenes</title>
+</head>
+<body>
+    <form action="create.php" method="POST" enctype="multipart/form-data">
+        <label for="palabra">Palabra:</label>
+        <input type="text" name="palabra" required>
+        
+        <label for="imagenes">Sube 4 imágenes:</label>
+        <input type="file" name="imagenes[]" accept="image/*" multiple required>
+
+        <button type="submit">Subir</button>
+    </form>
+</body>
+</html>

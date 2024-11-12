@@ -45,11 +45,10 @@ CREATE TABLE Rachas (
 
 -- inserts
 
-INSERT INTO Palabras (palabra) VALUES 
-    ('ahorcado'), 
-    ('programacion'), 
-    ('desarrollo'), 
-    ('servidor'), 
-    ('navegador');
 
-SELECT * FROM palabras
+SELECT * FROM imagenes;
+SELECT * FROM palabras;
+
+drop Table rachas;
+drop Table imagenes;
+drop Table palabras;
