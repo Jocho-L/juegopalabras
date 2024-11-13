@@ -3,16 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Subir Palabra e Imágenes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    <form action="create.php" method="POST" enctype="multipart/form-data">
-        <label for="palabra">Palabra:</label>
-        <input type="text" name="palabra" required>
-        
-        <label for="imagenes">Sube 4 imágenes:</label>
-        <input type="file" name="imagenes[]" accept="image/*" multiple required>
+    <section class="section">
+        <div class="container">
+            <h1 class="title is-2 has-text-centered">Crear Palabra e Imágenes</h1>
+            <div class="box">
+                <form action="create.php" method="POST" enctype="multipart/form-data">
+                    <!-- Campo de texto para la palabra -->
+                    <div class="field">
+                        <label for="palabra" class="label">Palabra:</label>
+                        <div class="control">
+                            <input type="text" name="palabra" class="input" placeholder="Escribe la palabra" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Campo de subida de imágenes -->
+                    <div class="field">
+                        <label class="label">Sube 4 Imágenes:</label>
+                        <div class="file has-name is-fullwidth">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="imagenes[]" accept="image/*" multiple required id="fileInput">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">Elegir imágenes...</span>
+                                </span>
+                                <span id="fileNames" class="file-name">Selecciona hasta 4 archivos</span>
+                            </label>
+                        </div>
+                        <p class="help">Selecciona cuatro imágenes relacionadas con la palabra.</p>
+                    </div>
 
-        <button type="submit">Subir</button>
-    </form>
+                    <!-- Botón de envío -->
+                    <div class="field is-grouped is-grouped-centered">
+                        <div class="control">
+                            <button type="submit" class="button is-primary is-fullwidth">Subir</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Font Awesome para el icono del input file -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Script para mostrar los nombres de los archivos seleccionados -->
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileNames = document.getElementById('fileNames');
+
+        fileInput.addEventListener('change', () => {
+            const files = Array.from(fileInput.files);
+            if (files.length > 0) {
+                fileNames.textContent = files.map(file => file.name).join(', ');
+            } else {
+                fileNames.textContent = "Selecciona hasta 4 archivos";
+            }
+        });
+    </script>
 </body>
 </html>

@@ -78,7 +78,7 @@ if ($palabraCompleta) {
         <p>Letras intentadas: <?= implode(", ", $_SESSION['letrasIntentadas']); ?></p>
         <p>Racha actual: <?= $_SESSION['racha']; ?></p>
     </div>
-    <a class="button is-danger is-dark" href="seleccion.html">Volver al menu</a>
+    <a class="button is-danger is-dark" href="reset.php">Volver al menu</a>
 </div>
 
 <!-- Mostrar imágenes relacionadas con la palabra -->

@@ -32,17 +32,6 @@ CREATE TABLE Imagenes (
     FOREIGN KEY (id_palabra) REFERENCES Palabras(id) ON DELETE CASCADE
 );
 
--- Tabla de Rachas
-CREATE TABLE Rachas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    racha_actual INT DEFAULT 0,
-    mejor_racha INT DEFAULT 0,
-    id_palabra_actual INT,
-    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_palabra_actual) REFERENCES Palabras(id) ON DELETE SET NULL
-);
-
 -- inserts
 
 
