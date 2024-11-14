@@ -4,7 +4,7 @@ const SERVER = "localhost";
 const DB = "juegopalabras";
 const USER = "root";
 const PASS = "";
-const SGBD = "mysql:host=" . SERVER . ";port=3307;dbname=" . DB . ";charset=UTF8"; // Cambié "portname" a "port"
+const SGBD = "mysql:host=" . SERVER . ";port=3306;dbname=" . DB . ";charset=UTF8"; // Cambié "portname" a "port"
 
 class Conexion {
 
