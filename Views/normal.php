@@ -123,6 +123,15 @@ if ($palabraCompleta) {
         </div>
     </div>
 </section>
+
+<!-- Script para autoseleccionar el input -->
+<script>
+    window.onload = function() {
+        document.getElementById("letra").select(); // Selecciona el texto del input
+    }
+</script>
+
 </body>
 </html>
+
 

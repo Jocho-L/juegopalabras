@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['letra'])) {
                     $_SESSION['letrasAdivinadas'][$i] = $letra;
                 }
             }
-            $_SESSION['tiempoRestante'] += 5; // Añadir tiempo por acierto
+            $_SESSION['tiempoRestante'] += 2; // Añadir tiempo por acierto
         } else {
             $_SESSION['intentosFallidos']++;
-            $_SESSION['tiempoRestante'] -= 3; // Reducir tiempo por fallo
+            $_SESSION['tiempoRestante'] -= 5; // Reducir tiempo por fallo
         }
     }
 }
@@ -74,45 +74,67 @@ if ($palabraCompleta) {
         }
 
         const intervalo = setInterval(actualizarTemporizador, 1000);
+
+        // Función para autoseleccionar el input cuando la página cargue
+        window.onload = function() {
+            document.getElementById("letra").select();
+        }
     </script>
 </head>
 <body>
-<div>
-    <h1 class="title is-1">Juego de Ahorcados</h1>
-    <p class="title is-3">Progreso: <?= implode(" ", str_split($_SESSION['letrasAdivinadas'])); ?></p>
-    <div class="title is-4">
-        <p id="temporizador">Tiempo restante: <?= $_SESSION['tiempoRestante']; ?>s</p>
-        <p>Intentos restantes: <?= $_SESSION['intentosMaximos'] - $_SESSION['intentosFallidos']; ?></p>
-        <p>Letras intentadas: <?= implode(", ", $_SESSION['letrasIntentadas']); ?></p>
-        <p>Racha actual: <?= $_SESSION['racha']; ?></p>
+    <div class="container">
+        <!-- Título principal -->
+        <h1 class="title is-1 has-text-centered">Juego de Ahorcados</h1>
+
+        <!-- Progreso del juego -->
+        <div class="box">
+            <p class="title is-3">Progreso: <?= implode(" ", str_split($_SESSION['letrasAdivinadas'])); ?></p>
+            <p id="temporizador" class="subtitle is-4">Tiempo restante: <?= $_SESSION['tiempoRestante']; ?>s</p>
+            <p class="subtitle is-4">Intentos restantes: <?= $_SESSION['intentosMaximos'] - $_SESSION['intentosFallidos']; ?></p>
+            <p class="subtitle is-4">Letras intentadas: <?= implode(", ", $_SESSION['letrasIntentadas']); ?></p>
+            <p class="subtitle is-4">Racha actual: <?= $_SESSION['racha']; ?></p>
+        </div>
+
+        <!-- Botón para volver al menú -->
+        <div class="has-text-centered">
+            <a class="button is-danger is-dark" href="reset.php">Volver al menú</a>
+        </div>
+
+        <!-- Imágenes asociadas al juego -->
+        <?php if (!empty($_SESSION['imagenes'])): ?>
+            <div class="columns is-multiline is-centered mt-5">
+                <?php foreach ($_SESSION['imagenes'] as $imagen): ?>
+                    <div class="column is-one-quarter">
+                        <img src="../imagenes/<?= htmlspecialchars($imagen['ruta_imagen']); ?>" alt="Imagen asociada" class="image is-128x128">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Estado del juego (terminado o en curso) -->
+        <?php if ($juegoTerminado): ?>
+            <div class="box">
+                <?php if ($palabraCompleta): ?>
+                    <p class="has-text-success">¡Felicidades! Has adivinado la palabra '<strong><?= $_SESSION['palabraSecreta']; ?></strong>'.</p>
+                    <form method="post">
+                        <button type="submit" name="nueva_palabra" value="1" class="button is-primary">Pasar a la siguiente palabra</button>
+                    </form>
+                <?php else: ?>
+                    <p class="has-text-danger">Lo siento, has perdido. La palabra era '<strong><?= $_SESSION['palabraSecreta']; ?></strong>'.</p>
+                    <a href="reset.php" class="button is-warning is-dark">Reiniciar</a>
+                <?php endif; ?>
+            </div>
+        <?php else: ?>
+            <!-- Formulario para adivinar una letra -->
+            <div class="box">
+                <form method="post" id="form-letra" class="has-text-centered">
+                    <label for="letra" class="title is-5">Introduce una letra:</label>
+                    <input class="input is-medium is-rounded" type="text" name="letra" id="letra" maxlength="1" required>
+                    <button type="submit" class="button is-success is-medium">Adivinar</button>
+                </form>
+            </div>
+        <?php endif; ?>
     </div>
-    <a class="button is-danger is-dark" href="reset.php">Volver al menú</a>
-</div>
-
-<div class="imagenes">
-    <?php if (!empty($_SESSION['imagenes'])): ?>
-        <?php foreach ($_SESSION['imagenes'] as $imagen): ?>
-            <img src="../imagenes/<?= htmlspecialchars($imagen['ruta_imagen']); ?>" alt="Imagen asociada" class="image is-128x128">
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
-
-<?php if ($juegoTerminado): ?>
-    <?php if ($palabraCompleta): ?>
-        <p>¡Felicidades! Has adivinado la palabra '<?= $_SESSION['palabraSecreta']; ?>'.</p>
-        <form method="post">
-            <button type="submit" name="nueva_palabra" value="1">Pasar a la siguiente palabra</button>
-        </form>
-    <?php else: ?>
-        <p>Lo siento, has perdido. La palabra era '<?= $_SESSION['palabraSecreta']; ?>'.</p>
-        <a href="reset.php" class="button is-warning is-dark">Reiniciar</a>
-    <?php endif; ?>
-<?php else: ?>
-    <form method="post" id="form-letra">
-        <label for="letra" class="title is-5">Introduce una letra:</label>
-        <input class="box field" type="text" name="letra" id="letra" maxlength="1" required>
-        <button type="submit" class="button is-success">Adivinar</button>
-    </form>
-<?php endif; ?>
 </body>
 </html>
+
