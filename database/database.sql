@@ -4,19 +4,20 @@ USE juegopalabras;
 
 -- Tabla Roles
 CREATE TABLE Roles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    idRol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) UNIQUE NOT NULL
 );
 
 -- Tabla de Usuarios
 CREATE TABLE Usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    rol_id INT,
-    FOREIGN KEY (rol_id) REFERENCES Roles(id) ON DELETE SET NULL
+    idRol INT,
+    FOREIGN KEY (idRol) REFERENCES Roles(idRol) ON DELETE SET NULL
 );
+
 
 -- Tabla de Palabras
 CREATE TABLE Palabras (
@@ -42,7 +43,12 @@ SELECT * FROM Usuarios;
 
 drop Table rachas;
 drop Table imagenes;
-drop Table palabras;
+drop Table Roles;
+
 
 INSERT INTO Usuarios (nombre_usuario, email, password, rol_id)
 VALUES ('admin', 'admin@example.com', 'admin', 1);
+
+INSERT INTO Roles (nombre_rol) VALUES
+('Administrador'),
+('Usuario');

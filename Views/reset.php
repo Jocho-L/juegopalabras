@@ -4,5 +4,5 @@ session_unset();    // Elimina todas las variables de sesión
 session_destroy();  // Destruye la sesión
 
 // Redirige de vuelta al juego
-header("Location: seleccion.html");
+header("Location: seleccion.php");
 exit();
