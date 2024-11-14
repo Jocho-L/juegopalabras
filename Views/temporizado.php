@@ -105,7 +105,7 @@ if ($palabraCompleta) {
             <div class="columns is-multiline is-centered mt-5">
                 <?php foreach ($_SESSION['imagenes'] as $imagen): ?>
                     <div class="column is-one-quarter">
-                        <img src="../imagenes/<?= htmlspecialchars($imagen['ruta_imagen']); ?>" alt="Imagen asociada" class="image is-128x128">
+                        <img src="../imagenes/<?= htmlspecialchars($imagen['ruta_imagen']); ?>" alt="Imagen asociada" class="image is-228x228">
                     </div>
                 <?php endforeach; ?>
             </div>

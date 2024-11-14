@@ -37,7 +37,12 @@ CREATE TABLE Imagenes (
 
 SELECT * FROM imagenes;
 SELECT * FROM palabras;
+SELECT * FROM Roles;
+SELECT * FROM Usuarios;
 
 drop Table rachas;
 drop Table imagenes;
 drop Table palabras;
+
+INSERT INTO Usuarios (nombre_usuario, email, password, rol_id)
+VALUES ('admin', 'admin@example.com', 'admin', 1);

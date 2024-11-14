@@ -18,7 +18,8 @@
       </p>
       <a class="button is-info mb-3" href="normal.php">Normal</a>
       <a class="button is-info mb-3" href="temporizado.php">Temporizado</a>
-      <a class="button is-info mb-3" href="create.html">Crear</a>
+      <a class="button is-info mb-3" href="unavida.php">Una vida</a>
+      <a class="button is-link mb-3" href="create.html">Crear +</a>
     </div>
   </section>
   </body>

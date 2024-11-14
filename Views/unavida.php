@@ -13,7 +13,7 @@ if (!isset($_SESSION['palabraSecreta']) || isset($_POST['nueva_palabra'])) {
     $_SESSION['idPalabra'] = $row['id']; // ID de la palabra
     $_SESSION['letrasAdivinadas'] = str_repeat("_", strlen($_SESSION['palabraSecreta']));
     $_SESSION['intentosFallidos'] = 0;
-    $_SESSION['intentosMaximos'] = 4;
+    $_SESSION['intentosMaximos'] = 1;
     $_SESSION['letrasIntentadas'] = [];
 
     // Inicializar o mantener el contador de racha
@@ -133,5 +133,3 @@ if ($palabraCompleta) {
 
 </body>
 </html>
-
-
