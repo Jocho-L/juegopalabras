@@ -36,14 +36,19 @@ class Conexion {
         try {
             $conn = self::getConexion();
             $stmt = $conn->prepare($query);
-            foreach ($params as $key => $value) {
-                $stmt->bindValue($key, $value);
+    
+            // Asegurarse de que los parámetros comiencen desde el índice 1
+            foreach ($params as $index => $value) {
+                // El índice de PDO debe comenzar desde 1
+                $stmt->bindValue($index + 1, $value);
             }
+    
             $stmt->execute();
             return $stmt;
         } catch (PDOException $e) {
             die("Error en la consulta: " . $e->getMessage());
         }
     }
+    
 }
 ?>
