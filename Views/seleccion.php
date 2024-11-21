@@ -10,9 +10,6 @@ if (!isset($_SESSION['idUsuario'])) {
     header("Location: ../login.php");
     exit();
 }
-
-
-
 // Conectar a la base de datos para obtener el nombre del usuario
 $idUsuario = $_SESSION['idUsuario'];
 

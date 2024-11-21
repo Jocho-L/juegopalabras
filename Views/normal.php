@@ -1,6 +1,16 @@
 <?php
 
+// Incluir el archivo de conexión
+require_once '../models/Conexion.php'; // Archivo de conexión
 session_start();
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['idUsuario'])) {
+    // Redirigir a la página de login si no hay sesión activa
+    header("Location: ../login.php");
+    exit();
+}
+
 include_once '../models/Conexion.php';
 $pdo = Conexion::getConexion();
 

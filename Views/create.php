@@ -1,6 +1,9 @@
 <?php
 require_once '../models/Conexion.php';
 
+// Conexión a la base de datos
+    $conexion = Conexion::getConexion();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $palabra = $_POST['palabra'];
     $imagenes = $_FILES['imagenes'];
@@ -24,8 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Debes subir exactamente 4 imágenes.");
     }
 
-    // Conexión a la base de datos
-    $conexion = Conexion::getConexion();
+    
     
     try {
         // 1. Insertar la palabra procesada en la tabla `Palabras`

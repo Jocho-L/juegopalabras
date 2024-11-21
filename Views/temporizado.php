@@ -14,7 +14,7 @@ if (!isset($_SESSION['palabraSecreta']) || isset($_POST['nueva_palabra'])) {
     $_SESSION['intentosMaximos'] = 4;
     $_SESSION['letrasIntentadas'] = [];
     $_SESSION['racha'] = $_SESSION['racha'] ?? 0;
-    $_SESSION['tiempoRestante'] = 5; // Tiempo inicial en segundos
+    $_SESSION['tiempoRestante'] = 30; // Tiempo inicial en segundos
 
     // Obtener las imágenes asociadas a la palabra
     $stmtImagenes = $pdo->prepare("SELECT ruta_imagen FROM Imagenes WHERE id_palabra = :id_palabra");
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['letra'])) {
             $_SESSION['tiempoRestante'] += 2; // Añadir tiempo por acierto
         } else {
             $_SESSION['intentosFallidos']++;
-            $_SESSION['tiempoRestante'] -= 5; // Reducir tiempo por fallo
+            $_SESSION['tiempoRestante'] -= 8; // Reducir tiempo por fallo
         }
     }
 }

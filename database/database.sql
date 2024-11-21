@@ -1,4 +1,4 @@
--- Active: 1724697242762@@127.0.0.1@3306
+-- Active: 1724697242762@@127.0.0.1@3306@juegopalabras
 CREATE DATABASE juegopalabras;
 USE juegopalabras;
 
